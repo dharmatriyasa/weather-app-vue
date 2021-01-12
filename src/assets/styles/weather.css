@@ -1,0 +1,85 @@
+#weather-app{
+    display: flex;
+    flex-direction: column;
+    background-color: aqua;
+}
+
+.input-form{
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+    margin-top: 50px;
+}
+
+.title-input-form{
+    flex-basis: 50%;
+    margin: 20px 0px;
+}
+
+.type-input-form{
+    flex-basis: 50%;
+    margin: 10px 0px 40px 0;
+}
+
+.weather-info{
+    display: flex;
+    flex-direction: row;
+    background-color:pink;
+    padding: 40px;
+    /* margin: 20px; */
+    color: black;
+}
+
+.temp-info{
+    flex-basis: 35%;
+    /* background-color: brown; */
+    height: 300px;
+    padding: 20px 10px;
+    border-right: solid 1px white;
+    
+}
+
+.temp-info h1:first-child{
+    font-size: 72px;
+}
+
+.temp-info p{
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+.temp-info h1:last-child{
+    margin-top: 5px;
+    font-size: 48px;
+}
+
+.out-temp-info{
+    flex-basis: 65%;
+    display: flex;
+    flex-direction: row;
+    /* background-color: cadetblue; */
+    height: 300px;
+}
+
+.template-out-temp-info{
+    flex-basis: 33.33%;
+    display: flex;
+    flex-direction: column;
+    /* border-left: solid 1px white; */
+    padding: 40px 10px;
+}
+
+.title-toti{
+    flex-basis: 40%;
+    font-size: 48px;
+    margin-top: 20px;
+}
+
+.value-toti{
+    flex-basis: 60%;
+    font-size: 72px;
+}
+
+.small-value-toti{
+    font-size: 26px;
+}

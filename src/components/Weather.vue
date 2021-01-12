@@ -1,58 +1,73 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div id="weather-app">
+    <div class="input-form">
+      <div class="title-input-form"> 
+        <h1 class="title text-center">Your Location</h1>
+        <p class="text-center"> to know your location weather</p>
+      </div>
+      <div class="type-input-form">
+        <form class="search-location" v-on:submit.prevent="getWeather">
+        <input
+          type="text"
+          class="form-control text-muted form-rounded p-4 shadow-sm"
+          placeholder="What City?"
+          v-model="citySearch"
+          autocomplete="off"
+        />
+      </form>
+      </div>
+    </div>
+    <div class="weather-info">
+      <div class="temp-info">
+        <h1>{{ weather.temperature }}&deg;C</h1>
+        <img src="@/assets/images/cloudy.png" alt="Gambar Awan" width="100px">
+        <p>{{ weather.description }}</p>
+        <h1>{{ weather.cityName }}</h1>
+        
+        
+      </div>
+      <div class="out-temp-info"> 
+        <div class="template-out-temp-info">
+          <h2 class="title-toti">Humidity</h2>
+          <h2 class="value-toti">{{ weather.humidity }}%</h2>
+        </div>
+        <div class="template-out-temp-info">
+          <h2 class="title-toti">Pressure</h2>
+          <h2 class="value-toti">{{ weather.pressure }}&deg;</h2>
+        </div>
+        <div class="template-out-temp-info">
+          <h2 class="title-toti">Wind</h2>
+          <h2 class="value-toti">{{ weather.wind }}<span class="small-value-toti">mph</span></h2>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+
 export default {
-  name: 'HelloWorld',
+  name: 'Weather',
   props: {
     msg: String
-  }
+  },
+  data(){
+    return {
+      weather: {
+        cityName: "Bali",
+        country: "ID",
+        temperature: 17,
+        description: "Clouds everywhere",
+        pressure: 95,
+        humidity: "44",
+        wind: 1.5
+      },
+    }
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+@import "../assets/styles/weather.css";
 </style>
