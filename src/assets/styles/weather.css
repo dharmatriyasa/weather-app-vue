@@ -1,19 +1,42 @@
 #weather-app{
     display: flex;
     flex-direction: column;
-    background-color: aqua;
+    color:#AFFFFF;
+    background-image: linear-gradient(#0F2027, #203A43, #2C5364);
+    padding-bottom: 50px;
+    height: 750px;
+    /* background-color: pink;
+    color: white; */
+    /* background-color: aqua; */
 }
 
 .input-form{
     display: flex;
     flex-direction: column;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
     margin-top: 50px;
+}
+
+.main-input-form{
+    padding: 10px 10% 10px 10px;
+    border: 2px solid#203A43;
+    border-radius: 25px;
+    outline: none;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+::placeholder{
+    color: #203A43;
 }
 
 .title-input-form{
     flex-basis: 50%;
     margin: 20px 0px;
+}
+
+.title-input-form h1{
+    font-size: 48px;
 }
 
 .type-input-form{
@@ -24,19 +47,26 @@
 .weather-info{
     display: flex;
     flex-direction: row;
-    background-color:pink;
+    /* background-color:#264E86;
+    height: 430px; */
+    /* background-color:pink; */
     padding: 40px;
     /* margin: 20px; */
-    color: black;
+    color:#AFFFFF;
 }
 
 .temp-info{
     flex-basis: 35%;
     /* background-color: brown; */
-    height: 300px;
-    padding: 20px 10px;
-    border-right: solid 1px white;
+    /* background-color:#5E88FC;
+    height: 350px; */
+    background-color: rgba(254, 255, 255, 0.2);
+    height: 350px;
+    padding: 40px 10px;
     
+    border-right: solid 1px#264E86;
+    border-bottom-left-radius: 25px;
+    border-top-left-radius: 25px;
 }
 
 .temp-info h1:first-child{
@@ -46,11 +76,13 @@
 .temp-info p{
     margin-top: 15px;
     font-size: 18px;
+    color: #feffff;
 }
 
 .temp-info h1:last-child{
     margin-top: 5px;
     font-size: 48px;
+    color: #feffff;
 }
 
 .out-temp-info{
@@ -58,14 +90,19 @@
     display: flex;
     flex-direction: row;
     /* background-color: cadetblue; */
-    height: 300px;
+    background-color: rgba(254, 255, 255, 0.2);
+    height: 350px;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    padding: 30px 0;
+    color:#AFFFFF;
 }
 
 .template-out-temp-info{
     flex-basis: 33.33%;
     display: flex;
     flex-direction: column;
-    /* border-left: solid 1px white; */
+    border-right: solid 1px #264E86;
     padding: 40px 10px;
 }
 
@@ -78,8 +115,36 @@
 .value-toti{
     flex-basis: 60%;
     font-size: 72px;
+    color: #feffff;
 }
 
 .small-value-toti{
     font-size: 26px;
+}
+
+@media screen and (max-width: 900px) {
+    #weather-app{
+        height: 1600px;
+    }
+    .weather-info{
+        flex-direction: column;
+    }
+
+    .temp-info{
+        flex-basis: 35%;
+        border-radius: 25px;
+        margin-bottom: 20px;
+        border-right: none;
+    }
+
+    .out-temp-info{
+        flex-basis: 65%;
+        display: flex;
+        flex-direction: column;
+        border-radius: 25px;
+    }
+
+    .template-out-temp-info{
+        border-right: none;
+    }
 }
