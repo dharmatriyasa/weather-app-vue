@@ -21,7 +21,34 @@
     <div class="weather-info">
       <div class="temp-info" v-if="isVisible">
         <h1>{{ weather.temperature }}&deg;C</h1>
-        <img src="@/assets/images/cloudy_pink.png" alt="Gambar Awan" width="100px">
+        <span v-if="cloudy_day">
+          <img src="@/assets/images/cloudy.png" alt="Gambar Awan" width="100px" >
+        </span>
+
+        <span v-if="cloudy_night">
+          <img src="@/assets/images/cloudy-night.png" alt="Gambar Awan Malam" width="100px" >
+        </span>
+
+        <span v-if="clear_night">
+          <img src="@/assets/images/night.png" alt="Gambar Malam" width="100px" >
+        </span>
+
+        <span v-if="snowy">
+          <img src="@/assets/images/snow.png" alt="Gambar Salju" width="100px" >
+        </span>
+
+        <span v-if="stormy">
+          <img src="@/assets/images/stormy.png" alt="Gambar Petir" width="100px" >
+        </span>
+
+        <span v-if="sunny">
+          <img src="@/assets/images/sun.png" alt="Gambar Matahari" width="100px" >
+        </span>
+
+        <span v-if="rainy">
+          <img src="@/assets/images/rainy.png" alt="Gambar Hujan" width="100px" >
+        </span>
+        
         <p>{{ weather.description }}</p>
         <h1>{{ weather.cityName }}</h1>
       </div>
@@ -65,6 +92,18 @@ export default {
       // visible
       cityFound: false,
       isVisible: false,
+
+      // weather icon
+      sunny: false,
+      clear_night: false,
+      snowy: false,
+      cloudy_day: false,
+      cloudy_night: false,
+      rainy: false,
+      stormy: false,
+
+      // day or night
+      isDay: false,
 
       citySearch: "",
       weather: {
@@ -121,6 +160,86 @@ export default {
         tempWind = data.wind.speed;
         this.timeUse = 0;
         this.countUpWind(tempWind);
+
+        const timeOfDay = data.weather[0].icon;
+
+        if(timeOfDay.includes('n')){
+          this.isDay = false;
+        }else{
+          this.isDay = true;
+        }
+
+        const mainWeather = data.weather[0].main;
+
+        if(mainWeather.includes('Clouds') && this.isDay){
+          this.sunny = false;
+          this.clear_night = false;
+          this.snowy = false;
+          this.cloudy_day = true;
+          this.cloudy_night = false;
+          this.rainy = false;
+          this.stormy= false;
+        }
+
+        if(mainWeather.includes('Clouds') && !this.isDay){
+          this.sunny = false;
+          this.clear_night = false;
+          this.snowy = false;
+          this.cloudy_day = false;
+          this.cloudy_night = true;
+          this.rainy = false;
+          this.stormy= false;
+        }
+
+        if(mainWeather.includes('Thunderstrom')){
+          this.sunny = false;
+          this.clear_night = false;
+          this.snowy = false;
+          this.cloudy_day = false;
+          this.cloudy_night = false;
+          this.rainy = false;
+          this.stormy= true;
+        }
+
+        if(mainWeather.includes('Snow')){
+          this.sunny = false;
+          this.clear_night = false;
+          this.snowy = true;
+          this.cloudy_day = false;
+          this.cloudy_night = false;
+          this.rainy = false;
+          this.stormy= false;
+        }
+
+        if(mainWeather.includes('Rain')){
+          this.sunny = false;
+          this.clear_night = false;
+          this.snowy = false;
+          this.cloudy_day = false;
+          this.cloudy_night = false;
+          this.rainy = true;
+          this.stormy= false;
+        }
+
+        if(mainWeather.includes('Clear') && this.isDay){
+          this.sunny = true;
+          this.clear_night = false;
+          this.snowy = false;
+          this.cloudy_day = false;
+          this.cloudy_night = false;
+          this.rainy = false;
+          this.stormy= false;
+        }
+
+        if(mainWeather.includes('Clear') && !this.isDay){
+          this.sunny = false;
+          this.clear_night = true;
+          this.snowy = false;
+          this.cloudy_day = false;
+          this.cloudy_night = false;
+          this.rainy = false;
+          this.stormy= false;
+        }
 
         this.isVisible = true;
         this.cityFound = false;
